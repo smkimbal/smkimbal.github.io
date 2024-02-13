@@ -17,55 +17,56 @@
     <div id="output"></div>
 
     <script>
-        async function callCloudFunction() {
-            const cloudFunctionUrl = 'https://us-central1-weatherapi-414217.cloudfunctions.net/avdata_get'; 
-
-            try {
-                const locationInput = document.getElementById('locationInput');
-                const enteredLocations = locationInput.value.split(',').map(location => location.trim());
-
-                const requestBody = {
-                    arrival_locations: enteredLocations
-                };
-
-                const response = await fetch(cloudFunctionUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(requestBody)
-                });
-
-                const data = await response.json();
-
-                const outputDiv = document.getElementById('output');
-                outputDiv.innerHTML = ''; // Clear previous output
-
-                for (const key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        const entry = data[key];
-
-                        // Create elements for each data point
-                        const airportHeading = document.createElement('h3');
-                        const metarElement = document.createElement('p');
-                        const tafElement = document.createElement('p');
-
-                        // Set text content
-                        airportHeading.textContent = entry.icaoId;
-                        metarElement.textContent = "METAR: " + entry.rawOb;
-                        tafElement.textContent = "TAF: " + entry.rawTaf;
-
-                        // Append elements to the output div
-                        outputDiv.appendChild(airportHeading);
-                        outputDiv.appendChild(metarElement);
-                        outputDiv.appendChild(tafElement);
+            async function callCloudFunction() {
+                const cloudFunctionUrl = 'https://us-central1-weatherapi-414217.cloudfunctions.net/avdata_get'; 
+            
+                try {
+                    const locationInput = document.getElementById('locationInput');
+                    const enteredLocations = locationInput.value.split(',').map(location => location.trim());
+            
+                    const requestBody = {
+                        arrival_locations: enteredLocations
+                    };
+            
+                    const response = await fetch(cloudFunctionUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(requestBody)
+                    });
+            
+                    const data = await response.json();
+            
+                    const outputDiv = document.getElementById('output');
+                    outputDiv.innerHTML = ''; // Clear previous output
+            
+                    for (const key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const entry = data[key];
+            
+                            // Create elements for each data point
+                            const airportHeading = document.createElement('h3');
+                            const metarElement = document.createElement('p');
+                            const tafElement = document.createElement('p');
+            
+                            // Set text content
+                            airportHeading.textContent = entry.icaoId;
+                            metarElement.textContent = "METAR: " + entry.rawOb;
+                            tafElement.textContent = "TAF: " + entry.rawTaf;
+            
+                            // Append elements to the output div
+                            outputDiv.appendChild(airportHeading);
+                            outputDiv.appendChild(metarElement);
+                            outputDiv.appendChild(tafElement);
+                        }
                     }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('output').innerText = 'Error fetching data'; 
                 }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('output').innerText = 'Error fetching data'; 
             }
-        }
+
     </script>
 
 </body>
