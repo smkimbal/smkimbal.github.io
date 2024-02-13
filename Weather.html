@@ -15,41 +15,47 @@
     <div id="output"></div>
 
     <script>
-        async function callCloudFunction() {
-            const cloudFunctionUrl = 'https://us-central1-weatherapi-414217.cloudfunctions.net/avdata_get'; 
+            using Google.Cloud.Functions.Framework;
+            using Google.Cloud.Functions.Hosting;
+            using Microsoft.AspNetCore.Hosting;
+            using Microsoft.AspNetCore.Http;
+            using Microsoft.Extensions.DependencyInjection;
+            using System.Net.Http;
+            using System.Threading.Tasks;
+            
+            namespace SendHttpRequest;
 
-            try {
-                const response = await fetch(cloudFunctionUrl);
-                const data = await response.json();
-
-                const outputDiv = document.getElementById('output');
-                outputDiv.innerHTML = ''; // Clear previous output
-
-                for (const key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        const entry = data[key];
-
-                        // Create elements for each data point
-                        const airportHeading = document.createElement('h3');
-                        const metarElement = document.createElement('p');
-                        const tafElement = document.createElement('p');
-
-                        // Set text content
-                        airportHeading.textContent = entry.icaoId;
-                        metarElement.textContent = "METAR: " + entry.rawOb;
-                        tafElement.textContent = "TAF: " + entry.rawTaf;
-
-                        // Append elements to the output div
-                        outputDiv.appendChild(airportHeading);
-                        outputDiv.appendChild(metarElement);
-                        outputDiv.appendChild(tafElement);
+            public class Startup : FunctionsStartup
+            {
+                public override void ConfigureServices(WebHostBuilderContext context, IServiceCollection services)
+                {
+                    // Make an HttpClient available to our function via dependency injection.
+                    // There are many options here; see
+                    // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests
+                    // for more details.
+                    services.AddHttpClient<IHttpFunction, Function>();
+                }
+            }
+            
+            // Function, decorated with the FunctionsStartup attribute to specify the startup class
+            // for dependency injection.
+            [FunctionsStartup(typeof(Startup))]
+            public class callCloudFunction : IHttpFunction
+            {
+                private readonly HttpClient _httpClient;
+            
+                public Function(HttpClient httpClient) =>
+                    _httpClient = httpClient;
+            
+                public async Task HandleAsync(HttpContext context)
+                {
+                    string url = "http://example.com";
+                    using (HttpResponseMessage clientResponse = await _httpClient.GetAsync(url))
+                    {
+                        await context.Response.WriteAsync($"Received code '{(int) clientResponse.StatusCode}' from URL '{url}'.");
                     }
                 }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('output').innerText = 'Error fetching data'; 
             }
-        }
     </script>
 
 </body>
