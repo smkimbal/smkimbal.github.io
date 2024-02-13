@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Cloud Function test V2</title>
+    <title>Google Cloud Function test</title>
 </head>
 <body>
 
-    <h1>Google Cloud Function Test update</h1>
+    <h1>Google Cloud Function Test update v3</h1>
 
     <label for="locationInput">Enter locations (comma-separated):</label>
-    <input type="text" id="locationInput" placeholder="e.g., kgsb, lciz, hoah">
+    <input type="text" id="locationInput" placeholder="e.g., kgsb, lciz, klax">
     <button onclick="callCloudFunction()">Run Cloud Function v2</button>
 
     <div id="output"></div>
 
     <script>
             async function callCloudFunction() {
-                const cloudFunctionUrl = 'URLHERE'; 
+                const cloudFunctionUrl = 'https://us-east4-weatherapi2-414222.cloudfunctions.net/WebGetAvApi'; 
             
                 try {
                     const locationInput = document.getElementById('locationInput');
