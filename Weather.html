@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Cloud Function Example</title>
+</head>
+<body>
+
+    <h1>Google Cloud Function Example</h1>
+
+    <button onclick="callCloudFunction()">Run Cloud Function</button>
+
+    <div id="output"></div>
+
+    <script>
+        function callCloudFunction() {
+            // Simulating API response
+            var exampleData = [
+                {
+                    'metar_id': 496487732,
+                    'icaoId': 'KGSB',
+                    'receiptTime': '2024-02-12 18:26:13',
+                    'obsTime': 1707761640,
+                    // ... other data ...
+                }
+            ];
+
+            // Display the example METAR data in the 'output' div
+            document.getElementById('output').innerText = JSON.stringify(exampleData, null, 2);
+        }
+    </script>
+
+</body>
+</html>
