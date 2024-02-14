@@ -8,18 +8,18 @@
 </head>
 <body>
 
-    <h1>Google Cloud Function Test update v0.0.3</h1>
+    <h1>Quick Metar/TAF v0.0.3</h1>
 
     <label for="locationInput">Enter locations (comma-separated):</label>
-    <input type="text" id="locationInput" placeholder="e.g., KNGU, KNGU, PHNG">
-    <button onclick="callCloudFunction()">Run Cloud Function</button>
+    <input type="text" id="locationInput" placeholder="e.g.: KNGU, KNGU, PHNG">
+    <button onclick="callCloudFunction()">Search by ICAO</button>
     <button onclick="callSJAFBAlternates()">SJAFB Alternates</button>
     <div id="output"></div>
 
     <script>
 
     async function callSJAFBAlternates() {
-        const sjafbLocations = ["KGSB", "KNGU", "PHNG"];
+        const sjafbLocations = [KADW,KCHS,KCLT,KNKT,KGSO,GSP,KTYS,KLFI,KMMT,KMYR,KNTU,KRDU,KRIC,KSSC,KILM,KECG,KPOB];
         const locationInput = document.getElementById('locationInput');
         
         // Set the input field with SJAFB Alternates
