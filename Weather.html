@@ -87,14 +87,14 @@
                             Vertical Visibility: ${vertVis}`; // Use innerHTML for formatted content
                         metarElement.innerHTML = formattedMetarContent;
                 
-                        // Apply word-wrap to metarElement
-                        metarElement.style.wordWrap = 'break-word';
+                        // Apply white-space: pre-wrap to metarElement
+                        metarElement.style.whiteSpace = 'pre-wrap';
                 
                         // Set text content for TAF
                         tafElement.innerHTML = `<b>TAF:</b>\n${entry.rawTaf}`; // Use innerHTML for formatted content
                 
-                        // Apply word-wrap to tafElement
-                        tafElement.style.wordWrap = 'break-word';
+                        // Apply white-space: pre-wrap to tafElement
+                        tafElement.style.whiteSpace = 'pre-wrap';
                 
                         // Append elements to the output div
                         outputDiv.appendChild(airportHeading);
@@ -103,7 +103,7 @@
                 
                         // Append raw METAR at the bottom of metarElement
                         const rawMetarElement = document.createElement('pre');
-                        rawMetarElement.innerHTML = `<b>Raw METAR:</b>\n${rawOb}`; // Use innerHTML for formatted content
+                        rawMetarElement.innerHTML = `<b>METAR:</b>\n${rawOb}`; // Use innerHTML for formatted content
                         rawMetarElement.style.wordWrap = 'break-word'; // Apply word-wrap to rawMetarElement
                         metarElement.appendChild(rawMetarElement);
                     }
