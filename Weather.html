@@ -46,23 +46,20 @@
 
             console.log('Response Data:', responseData); // Log the response data
 
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = ''; // Clear previous output
-
             for (const key in responseData) {
                 if (responseData.hasOwnProperty(key)) {
                     const entry = responseData[key];
-
+            
                     // Create elements for each data point
                     const airportHeading = document.createElement('h3');
-                    const metarElement = document.createElement('p');
-                    const tafElement = document.createElement('p');
-
+                    const metarElement = document.createElement('pre'); // Use <pre> for multiline content
+                    const tafElement = document.createElement('pre'); // Use <pre> for multiline content
+            
                     // Set text content
                     airportHeading.textContent = entry.icaoId;
-                    metarElement.textContent = "METAR: " + entry.rawOb;
-                    tafElement.textContent = "TAF: " + entry.rawTaf;
-
+                    metarElement.innerText = "METAR:\n" + entry.rawOb; // Use innerText for multiline content
+                    tafElement.innerText = "TAF:\n" + entry.rawTaf; // Use innerText for multiline content
+            
                     // Append elements to the output div
                     outputDiv.appendChild(airportHeading);
                     outputDiv.appendChild(metarElement);
