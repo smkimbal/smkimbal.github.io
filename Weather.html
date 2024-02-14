@@ -51,7 +51,8 @@
 
             for (const key in responseData) {
                 if (responseData.hasOwnProperty(key)) {
-                    const entry = responseData[key];
+                    const jsonString = responseData[key];
+                    const entry = JSON.parse(jsonString);
             
                     // Create elements for each data point
                     const airportHeading = document.createElement('h3');
