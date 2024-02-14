@@ -23,9 +23,12 @@
                 try {
                     const locationInput = document.getElementById('locationInput');
                     const enteredLocations = locationInput.value.split(',').map(location => location.trim());
-            
+    
+                    // Ensure each location is wrapped in double quotes
+                    const quotedLocations = enteredLocations.map(location => `"${location}"`);
+    
                     const requestBody = {
-                        arrival_locations: enteredLocations
+                        arrival_locations: quotedLocations
                     };
             
                     const response = await fetch(cloudFunctionUrl, {
