@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <h1>Google Cloud Function Test update v0.13</h1>
+    <h1>Google Cloud Function Test update v0.0.3</h1>
 
     <label for="locationInput">Enter locations (comma-separated):</label>
     <input type="text" id="locationInput" placeholder="e.g., kgsb, lciz, klax">
@@ -51,7 +51,7 @@
 
                 for (const key in responseData) {
                     if (responseData.hasOwnProperty(key)) {
-                        const jsonString = responseData[key];
+                        const jsonArray = responseData[key];
                         const entry = jsonArray[0];
                 
                         // Extract values of interest
