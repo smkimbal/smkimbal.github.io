@@ -52,7 +52,7 @@
                 for (const key in responseData) {
                     if (responseData.hasOwnProperty(key)) {
                         const jsonString = responseData[key];
-                        const entry = JSON.parse(jsonString);
+                        const entry = jsonArray[0];
                 
                         // Extract values of interest
                         const {
