@@ -104,7 +104,7 @@
                         // Append raw METAR at the bottom of metarElement
                         const rawMetarElement = document.createElement('pre');
                         rawMetarElement.innerHTML = `<b>METAR:</b>\n${rawOb}`; // Use innerHTML for formatted content
-                        rawMetarElement.style.wordWrap = 'break-word'; // Apply word-wrap to rawMetarElement
+                        rawMetarElement.style.whiteSpace = 'pre-wrap';
                         metarElement.appendChild(rawMetarElement);
                     }
                 }
