@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <h1>Quick Metar/TAF v0.0.5</h1>
+    <h1>Quick Metar/TAF v0.0.5a</h1>
 
     <label for="locationInput">Enter locations (comma-separated):</label>
     <input type="text" id="locationInput" placeholder="e.g.: KNGU, KNGU, PHNG">
@@ -19,7 +19,7 @@
     <script>
 
     async function callSJAFBAlternates() {
-        const sjafbLocations = ["KNKT","KLFI","KSSC","KNTU","KADW","KCHS","KCLT","KGSO","GSP","KTYS","KMMT","KMYR","KRDU","KRIC","KILM","KECG","KPOB"];
+        const sjafbLocations = ["KNKT","KLFI","KSSC","KNTU","KADW","KCHS","KCLT","KGSO","KGSP","KTYS","KMMT","KMYR","KRDU","KRIC","KILM","KECG","KPOB"];
         const locationInput = document.getElementById('locationInput');
         
         // Set the input field with SJAFB Alternates
