@@ -53,6 +53,19 @@
                 if (responseData.hasOwnProperty(key)) {
                     const jsonString = responseData[key];
                     const entry = JSON.parse(jsonString);
+
+                    // Extract values of interest
+                    const {
+                        wdir,
+                        wspd,
+                        wgst,
+                        visib,
+                        altim,
+                        wxString,
+                        precip,
+                        vertVis,
+                        rawOb
+                    } = entry;
             
                     // Create elements for each data point
                     const airportHeading = document.createElement('h3');
@@ -61,9 +74,26 @@
             
                     // Set text content
                     airportHeading.textContent = entry.icaoId;
-                    metarElement.innerText = "METAR:\n" + entry.rawOb; // Use innerText for multiline content
+                    
+                    // Format and set text content for METAR
+                metarElement.innerHTML = 'METAR:\n"
+                    Wind Direction: ${wdir}\n
+                    Wind Speed: ${wspd}\n
+                    Wind Gust: ${wgst}\n
+                    Visibility: ${visib}\n
+                    Altimeter: ${altim}\n
+                    Weather: ${wxString}\n
+                    Precipitation: ${precip}\n
+                    Vertical Visibility: ${vertVis}\n
+                    RAW: ${rawOb}'; // Use innerHTML for formatted content
+
+                metarElement.style.wordWrap = 'break-word';
+                    // Set text content for TAF   
+                    tafElement.innerHTML = `<b>TAF:</b>\n${entry.rawTaf}`; // Use innerHTML for formatted content
                     tafElement.innerText = "TAF:\n" + entry.rawTaf; // Use innerText for multiline content
-            
+                    // Apply word-wrap to tafElement
+                    tafElement.style.wordWrap = 'break-word';
+                    
                     // Append elements to the output div
                     outputDiv.appendChild(airportHeading);
                     outputDiv.appendChild(metarElement);
