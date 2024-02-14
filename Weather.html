@@ -11,12 +11,23 @@
     <h1>Google Cloud Function Test update v0.0.3</h1>
 
     <label for="locationInput">Enter locations (comma-separated):</label>
-    <input type="text" id="locationInput" placeholder="e.g., kgsb, lciz, klax">
+    <input type="text" id="locationInput" placeholder="e.g., KNGU, KNGU, PHNG">
     <button onclick="callCloudFunction()">Run Cloud Function</button>
-
+    <button onclick="callSJAFBAlternates()">SJAFB Alternates</button>
     <div id="output"></div>
 
     <script>
+
+    async function callSJAFBAlternates() {
+        const sjafbLocations = ["KGSB", "KNGU", "PHNG"];
+        const locationInput = document.getElementById('locationInput');
+        
+        // Set the input field with SJAFB Alternates
+        locationInput.value = sjafbLocations.join(', ');
+
+        // Call the cloud function
+        await callCloudFunction();
+    }
     async function callCloudFunction() {
         const cloudFunctionUrl = 'https://us-east4-weatherapi2-414222.cloudfunctions.net/WebGetAvApi';
 
