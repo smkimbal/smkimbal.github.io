@@ -25,7 +25,7 @@
             const enteredLocations = locationInput.value.split(',').map(location => location.trim());
 
             // Ensure each location is wrapped in double quotes
-            const quotedLocations = enteredLocations.map(location => `"${location}"`);
+            const quotedLocations = enteredLocations.map(location => `${location}`);
 
             const requestBody = {
                 arrival_locations: quotedLocations
