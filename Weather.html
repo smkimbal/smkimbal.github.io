@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <h1>Google Cloud Function Test update v0.11</h1>
+    <h1>Google Cloud Function Test update v0.12</h1>
 
     <label for="locationInput">Enter locations (comma-separated):</label>
     <input type="text" id="locationInput" placeholder="e.g., kgsb, lciz, klax">
@@ -20,6 +20,9 @@
     async function callCloudFunction() {
         const cloudFunctionUrl = 'https://us-east4-weatherapi2-414222.cloudfunctions.net/WebGetAvApi';
 
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = ''; // Clear previous output
+        
         try {
             const locationInput = document.getElementById('locationInput');
             const enteredLocations = locationInput.value.split(',').map(location => location.trim());
@@ -68,7 +71,7 @@
             }
         } catch (error) {
             console.error('Error fetching data:', error);
-            document.getElementById('output').innerText = 'Error fetching data';
+            outputDiv.innerText = 'Error fetching data'; // Use the already declared outputDiv variable
         }
     }
 </script>
