@@ -75,6 +75,8 @@
                             wxString,
                             precip,
                             vertVis,
+                            name,
+                            clouds,
                             rawOb // Include rawOb here
                         } = entry;
                 
@@ -84,19 +86,20 @@
                         const tafElement = document.createElement('pre'); // Use <pre> for multiline content
                 
                         // Set text content
-                        airportHeading.textContent = entry.icaoId;
+                        airportHeading.textContent = entry.icaoId + ' - ' + entry.name;
                 
                         // Format and set text content for METAR
-                        const formattedMetarContent = `<b>METAR:</b>\n
-                            Wind Direction: ${wdir}\n
-                            Wind Speed: ${wspd}\n
-                            Wind Gust: ${wgst}\n
-                            Visibility: ${visib}\n
-                            Altimeter: ${altim}\n
-                            Weather: ${wxString}\n
-                            Precipitation: ${precip}\n
-                            Vertical Visibility: ${vertVis}`; // Use innerHTML for formatted content
-                        metarElement.innerHTML = formattedMetarContent;
+                        const formattedMetarContent = `<b>Wx Report:</b>\n
+Wind Direction: ${wdir}\n
+Wind Speed: ${wspd}\n
+Wind Gust: ${wgst}\n
+Clouds: ${clouds[0]}\n
+Visibility: ${visib}\n
+Altimeter: ${altim}\n
+Significant Weather: ${wxString}\n
+Precipitation: ${precip}\n
+Vertical Visibility: ${vertVis}`; // Use innerHTML for formatted content
+metarElement.innerHTML = formattedMetarContent;
                 
                         // Apply white-space: pre-wrap to metarElement
                         metarElement.style.whiteSpace = 'pre-wrap';
