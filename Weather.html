@@ -116,10 +116,7 @@ metarElement.innerHTML = formattedMetarContent;
                         const formattedTafContent = entry.rawTaf.replace(pattern, addIndentation);
                         tafElement.innerHTML = `<b>TAF:</b>\n${formattedTafContent}`; // Use innerHTML for formatted content
                 
-                        // Set text content for TAF
-                        const formattedTafContent = ...??
-                        tafElement.innerHTML = formattedTafContent;
-                
+
                         // Append elements to the output div
                         outputDiv.appendChild(airportHeading);
                         outputDiv.appendChild(metarElement);
