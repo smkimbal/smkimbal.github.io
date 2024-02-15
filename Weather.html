@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <h1>Quick Metar/TAF v0.0.1f</h1>
+    <h1>Quick Metar/TAF v0.0.1g</h1>
 
     <label for="locationInput">Enter locations (comma-separated):</label>
     <input type="text" id="locationInput" placeholder="e.g.: KNGU, KNGU, PHNG">
@@ -18,6 +18,10 @@
 
     <script>
 
+    function addIndentation(match) {
+          return "\n    " + match;
+        }
+        
     async function callSJAFBAlternates() {
         const sjafbLocations = ["KNKT","KLFI","KSSC","KNTU","KADW","KCHS","KCLT","KGSO","KGSP","KTYS","KMMT","KMYR","KRDU","KRIC","KILM","KECG","KPOB"];
         const locationInput = document.getElementById('locationInput');
@@ -28,6 +32,7 @@
         // Call the cloud function
         await callCloudFunction();
     }
+        
     async function callCloudFunction() {
         const cloudFunctionUrl = 'https://us-east4-weatherapi2-414222.cloudfunctions.net/WebGetAvApi';
 
@@ -107,11 +112,12 @@ metarElement.innerHTML = formattedMetarContent;
                         // Apply white-space: pre-wrap to metarElement
                         metarElement.style.whiteSpace = 'pre-wrap';
                 
-                        // Set text content for TAF
-                        tafElement.innerHTML = `<b>TAF:</b>\n${entry.rawTaf}`; // Use innerHTML for formatted content
+                        const pattern = new RegExp("(FM|TEMPO|PROB|BECMG|RMK)", "g");
+                        const formattedTafContent = entry.rawTaf.replace(pattern, addIndentation);
+                        tafElement.innerHTML = `<b>TAF:</b>\n${formattedTafContent}`; // Use innerHTML for formatted content
                 
                         // Set text content for TAF
-                        const formattedTafContent = `<b>TAF:</b>\n${entry.rawTaf.replace(/(^FM|^TEMPO|^PROB|^BECMG|^RMK)/gm, '$1\n    ')}`; // Use innerHTML for formatted content
+                        const formattedTafContent = ...??
                         tafElement.innerHTML = formattedTafContent;
                 
                         // Append elements to the output div
