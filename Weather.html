@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <h1>Quick Metar/TAF v0.0.1c</h1>
+    <h1>Quick Metar/TAF v0.0.1d</h1>
 
     <label for="locationInput">Enter locations (comma-separated):</label>
     <input type="text" id="locationInput" placeholder="e.g.: KNGU, KNGU, PHNG">
@@ -86,8 +86,7 @@
                         const tafElement = document.createElement('pre'); // Use <pre> for multiline content
 
                         // Extract and format clouds information
-                                const cloudsInfo = clouds.map(cloud => `Tops: ${cloud.base ? cloud.base + ' ft' : 'N/A'}, Base: ${cloud.base ? cloud.base + ' ft' : 'N/A'}`).join(', ');
-
+                        const cloudsInfo = clouds.map(cloud => `${cloud.cover}: ${cloud.base}ft`).join(', ');
                         
                         // Set text content
                         airportHeading.textContent = entry.icaoId + ' - ' + entry.name;
