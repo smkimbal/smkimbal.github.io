@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <h1>Quick Metar/TAF v0.0.1d</h1>
+    <h1>Quick Metar/TAF v0.0.1e</h1>
 
     <label for="locationInput">Enter locations (comma-separated):</label>
     <input type="text" id="locationInput" placeholder="e.g.: KNGU, KNGU, PHNG">
@@ -110,8 +110,9 @@ metarElement.innerHTML = formattedMetarContent;
                         // Set text content for TAF
                         tafElement.innerHTML = `<b>TAF:</b>\n${entry.rawTaf}`; // Use innerHTML for formatted content
                 
-                        // Apply white-space: pre-wrap to tafElement
-                        tafElement.style.whiteSpace = 'pre-wrap';
+                        // Set text content for TAF
+                        const formattedTafContent = `<b>TAF:</b>\n${entry.rawTaf.replace(/(FM|TEMPO|PROB|BECMG|RMK)/g, '$1\n    ')}`; // Use innerHTML for formatted content
+                        tafElement.innerHTML = formattedTafContent;
                 
                         // Append elements to the output div
                         outputDiv.appendChild(airportHeading);
